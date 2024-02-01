@@ -12,7 +12,7 @@ public interface CrudDAO <T, ID,C> extends SuperDAO {
 
     boolean delete(ID id, Connection connection) throws SQLException, ClassNotFoundException;
 
-    ObservableList<Customer> getAll(Connection connection) throws SQLException, ClassNotFoundException;
+    ObservableList<T> getAll(Connection connection) throws SQLException, ClassNotFoundException;
 
-    boolean update(Customer customer, Connection connection) throws SQLException, ClassNotFoundException;
+    boolean update(T t, Connection connection) throws SQLException, ClassNotFoundException;
 }

@@ -135,33 +135,33 @@
 </section>
 
 <section id="ItemFormManage">
-    <h2 style="margin: 15px"><i class="fa-solid fa-list-check"></i>  Item Manage</h2>
+    <h2 style="margin: 15px"><i class="fa-solid fa-list-check"></i> Item Manage</h2>
     <div class="container text-center">
         <div class="row align-items-start">
             <div class="col-5 mb-3">
                 <div class="card border-success " style="max-width: 25rem; height: 465px;">
                     <div class="card-header text-white bg-success">Item Form</div>
                     <div class="card-body m-3">
-                        <form>
+                        <form id="itemForm">
                             <div class="row mb-4 justify-content-center">
                                 <div class="mb-1">
                                     <label for="txtItemId" class="form-label">Item Code </label>
-                                    <input type="text" class="form-control" id="txtItemId" placeholder="I00-___">
+                                    <input name="txtItemId" type="text" class="form-control" id="txtItemId" placeholder="I00-___">
                                     <span class="control-error" id="lblitemid"></span>
                                 </div>
                                 <div class="mb-1">
                                     <label for="txtItemName" class="form-label">Item Name :</label>
-                                    <input type="text" class="form-control" id="txtItemName">
+                                    <input name="txtItemName" type="text" class="form-control" id="txtItemName">
                                     <span class="control-error" id="lblname"></span>
                                 </div>
                                 <div class="mb-1">
                                     <label for="txtQty" class="form-label">Item Qty :</label>
-                                    <input type="text" class="form-control" id="txtQty">
+                                    <input name="txtQty" type="text" class="form-control" id="txtQty">
                                     <span class="control-error" id="lblqty"></span>
                                 </div>
                                 <div class="mb-1">
                                     <label for="txtPrice" class="form-label">Item Price :</label>
-                                    <input type="text" class="form-control mb-1" id="txtPrice">
+                                    <input name="txtPrice" type="text" class="form-control mb-1" id="txtPrice">
                                     <span class="control-error" id="lblprice"></span>
                                 </div>
                                 <div class="btn-group " role="group" aria-label="Basic example">
