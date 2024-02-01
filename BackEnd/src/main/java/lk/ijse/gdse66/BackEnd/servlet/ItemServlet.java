@@ -120,6 +120,52 @@ public class ItemServlet extends HttpServlet {
     }
 
     @Override
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("item-doput");
+        resp.addHeader("Access-Control-Allow-Origin", "*");
+        resp.setContentType("Application/json");
+        PrintWriter writer = resp.getWriter();
+
+        JsonReader reader = Json.createReader(req.getReader());
+        JsonObject jsonObject = reader.readObject();
+
+        try {
+            Connection connection = dataSource.getConnection();
+
+            ItemDTO itemDTO = new ItemDTO(
+                    jsonObject.getString("txtItemId"),
+                    jsonObject.getString("txtItemName"),
+                    Integer.parseInt(jsonObject.getString("txtQty")),
+                    Double.parseDouble(jsonObject.getString("txtPrice"))
+            );
+            if (itemBO.updateItem(connection, itemDTO)) {
+                JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
+                objectBuilder.add("status", 200);
+                objectBuilder.add("message", "Successfully Updated");
+                objectBuilder.add("data", "");
+                writer.print(objectBuilder.build());
+            } else {
+                JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
+                objectBuilder.add("status", 400);
+                objectBuilder.add("message", "Update Failed");
+                objectBuilder.add("data", "");
+                writer.print(objectBuilder.build());
+            }
+
+            connection.close();
+
+        } catch (SQLException | ClassNotFoundException e) {
+            JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
+            objectBuilder.add("status", 500);
+            objectBuilder.add("message", "Update Failed");
+            objectBuilder.add("data", e.getLocalizedMessage());
+            writer.print(objectBuilder.build());
+            e.printStackTrace();
+        }
+
+    }
+
+    @Override
     protected void doOptions(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.addHeader("Access-Control-Allow-Origin", "*");
         resp.addHeader("Access-Control-Allow-Headers", "Content-Type");

@@ -11,4 +11,6 @@ public interface ItemBO extends SuperBO {
     boolean addItem(Connection connection, ItemDTO itemDTO) throws SQLException, ClassNotFoundException;
 
     ObservableList<ItemDTO> getAllItem(Connection connection) throws SQLException, ClassNotFoundException;
+
+    boolean updateItem(Connection connection, ItemDTO itemDTO) throws SQLException, ClassNotFoundException;
 }

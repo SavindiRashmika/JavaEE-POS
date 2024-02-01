@@ -56,7 +56,53 @@ function loadAllItem(){
                 $("#tblItem").append(row);
 
             }
+            bindClickEvent();
         }
     });
 }
 
+function bindClickEvent() {
+    $("#tblItem>tr").click(function () {
+
+        let id = $(this).children().eq(0).text();
+        let name= $(this).children().eq(1).text();
+        let qtyOnHand = $(this).children().eq(2).text();
+        let price = $(this).children().eq(3).text();
+
+        $("#txtItemId").val(id);
+        $("#txtItemName").val(name);
+        $("#txtQty").val(qtyOnHand);
+        $("#txtPrice").val(price);
+
+    });
+}
+
+$("#btnItemUpdate").click(function (){
+    let itemOb = {
+        txtItemId: $("#txtItemId").val(),
+        txtItemName: $("#txtItemName").val(),
+        txtQty: $("#txtQty").val(),
+        txtPrice: $("#txtPrice").val()
+    };
+    $.ajax({
+        url: "http://localhost:8081/backEnd/item",
+        method: "PUT",
+        contentType: "application/json",
+        data: JSON.stringify(itemOb),
+        success: function (res){
+            if (res.status == 200){
+                alert(res.message);
+                resetItem();
+                loadAllItem();
+            } else if (res.status == 400){
+                alert(res.message);
+            } else {
+                alert(res.data);
+            }
+        },
+        error: function (ob, errorStus) {
+            console.log(ob);
+            console.log(errorStus);
+        }
+    });
+});
