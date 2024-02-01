@@ -106,3 +106,32 @@ $("#btnItemUpdate").click(function (){
         }
     });
 });
+
+$("#btnItemDelete").click(function (){
+    let itemCode = $("#txtItemId").val();
+
+    $.ajax({
+        url: "http://localhost:8081/backEnd/item?txtItemId=" + itemCode,
+        method: "DELETE",
+
+        success: function (res) {
+            console.log(res);
+            if (res.status == 200) {
+                alert(res.message);
+                resetItem();
+                loadAllItem();
+            } else if (res.status == 400) {
+                alert(res.data);
+            } else {
+                alert(res.data);
+            }
+
+        },
+        error: function (ob, status, t) {
+            console.log(ob);
+            console.log(status);
+            console.log(t);
+        }
+    });
+});
+

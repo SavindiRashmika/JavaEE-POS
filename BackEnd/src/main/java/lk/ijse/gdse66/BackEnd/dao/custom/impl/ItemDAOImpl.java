@@ -13,8 +13,8 @@ import java.sql.SQLException;
 
 public class ItemDAOImpl implements ItemDAO {
     @Override
-    public boolean delete(String s, Connection connection) throws SQLException, ClassNotFoundException {
-        return false;
+    public boolean delete(String code, Connection connection) throws SQLException, ClassNotFoundException {
+        return CrudUtil.executeUpdate(connection,"DELETE FROM company.item WHERE code=?",code);
     }
 
     @Override
