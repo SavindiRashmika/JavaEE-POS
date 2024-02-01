@@ -190,14 +190,7 @@ public class CustomerServlet extends HttpServlet {
 
             connection.close();
 
-        } catch (SQLException e) {
-            JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
-            objectBuilder.add("status", 500);
-            objectBuilder.add("message", "Update Failed");
-            objectBuilder.add("data", e.getLocalizedMessage());
-            writer.print(objectBuilder.build());
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
             objectBuilder.add("status", 500);
             objectBuilder.add("message", "Update Failed");
