@@ -56,12 +56,12 @@ function loadAllItem(){
                 $("#tblItem").append(row);
 
             }
-            bindClickEvent();
+            bindItemClickEvent();
         }
     });
 }
 
-function bindClickEvent() {
+function bindItemClickEvent() {
     $("#tblItem>tr").click(function () {
 
         let id = $(this).children().eq(0).text();
