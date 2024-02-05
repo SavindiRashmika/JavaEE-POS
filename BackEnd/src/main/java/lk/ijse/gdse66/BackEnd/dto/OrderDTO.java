@@ -18,5 +18,7 @@ public class OrderDTO {
     private double total;
     private double subTotal;
     private double discount;
-    private ArrayList<OrderDetailDTO> orderDetail;
+//    private ArrayList<OrderDetailDTO> orderDetail;
+
+
 }

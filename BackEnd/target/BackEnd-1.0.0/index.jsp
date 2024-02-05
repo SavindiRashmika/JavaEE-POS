@@ -2,12 +2,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>JSP - Hello World</title>
+    <title>server</title>
+    <style>
+        h1{
+            color: red;
+        }
+    </style>
 </head>
 <body>
-<h1><%= "Hello World!" %>
+<h1><%= "Server Started" %>
 </h1>
-<br/>
-<a href="hello-servlet">Hello Servlet</a>
 </body>
 </html>

@@ -54,11 +54,15 @@ lnkHome.addEventListener("click",function (){
     OrderCount();
 })
 
+
 lnkOrder.addEventListener("click",function (){
     order.style.display = 'block';
     customer.style.display ='none';
     OrderDetails.style.display = 'none';
     item.style.display ='none';
     dash.style.display = 'none';
+
+    loadCustomerData();
+    loadItemData();
 })
 
