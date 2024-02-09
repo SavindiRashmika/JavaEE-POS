@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import lk.ijse.gdse66.BackEnd.Entity.Customer;
 import lk.ijse.gdse66.BackEnd.bo.custom.CustomerBO;
+import lk.ijse.gdse66.BackEnd.dao.DAOFactory;
 import lk.ijse.gdse66.BackEnd.dao.custom.CustomerDAO;
 import lk.ijse.gdse66.BackEnd.dao.custom.impl.CustomerDAOImpl;
 import lk.ijse.gdse66.BackEnd.dto.CustomerDTO;
@@ -12,7 +13,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 public class CustomerBOImpl implements CustomerBO {
-    CustomerDAO customerDAO = new CustomerDAOImpl();
+    CustomerDAO customerDAO = (CustomerDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.CUSTOMER);
 
     @Override
     public boolean addCustomer(Connection connection, CustomerDTO customerDTO) throws SQLException, ClassNotFoundException {

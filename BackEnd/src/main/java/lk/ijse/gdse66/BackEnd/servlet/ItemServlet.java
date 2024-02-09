@@ -2,6 +2,7 @@ package lk.ijse.gdse66.BackEnd.servlet;
 
 import jakarta.json.*;
 import javafx.collections.ObservableList;
+import lk.ijse.gdse66.BackEnd.bo.BOFactory;
 import lk.ijse.gdse66.BackEnd.bo.custom.ItemBO;
 import lk.ijse.gdse66.BackEnd.bo.custom.impl.ItemBOImpl;
 import lk.ijse.gdse66.BackEnd.dto.ItemDTO;
@@ -25,7 +26,7 @@ public class ItemServlet extends HttpServlet {
     @Resource(name = "java:comp/env/jdbc/pool")
     DataSource dataSource;
 
-    ItemBO itemBO = new ItemBOImpl();
+    ItemBO itemBO = (ItemBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.ITEM);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

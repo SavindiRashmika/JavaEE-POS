@@ -2,6 +2,7 @@ package lk.ijse.gdse66.BackEnd.servlet;
 
 import jakarta.json.*;
 import javafx.collections.ObservableList;
+import lk.ijse.gdse66.BackEnd.bo.BOFactory;
 import lk.ijse.gdse66.BackEnd.bo.custom.CustomerBO;
 import lk.ijse.gdse66.BackEnd.bo.custom.impl.CustomerBOImpl;
 import lk.ijse.gdse66.BackEnd.dto.CustomerDTO;
@@ -22,7 +23,7 @@ import javax.sql.DataSource;
 public class CustomerServlet extends HttpServlet {
     @Resource(name = "java:comp/env/jdbc/pool")
     DataSource dataSource;
-    CustomerBO customerBO = new CustomerBOImpl();
+    CustomerBO customerBO = (CustomerBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.CUSTOMER);
 
 
     @Override

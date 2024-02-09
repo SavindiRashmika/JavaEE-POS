@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import lk.ijse.gdse66.BackEnd.Entity.Item;
 import lk.ijse.gdse66.BackEnd.bo.custom.ItemBO;
+import lk.ijse.gdse66.BackEnd.dao.DAOFactory;
 import lk.ijse.gdse66.BackEnd.dao.custom.ItemDAO;
 import lk.ijse.gdse66.BackEnd.dao.custom.impl.ItemDAOImpl;
 import lk.ijse.gdse66.BackEnd.dto.ItemDTO;
@@ -13,7 +14,7 @@ import java.sql.SQLException;
 
 public class ItemBOImpl implements ItemBO {
 
-    ItemDAO itemDAO = new ItemDAOImpl();
+    ItemDAO itemDAO = (ItemDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.ITEM);
 
     @Override
     public boolean addItem(Connection connection, ItemDTO itemDTO) throws SQLException, ClassNotFoundException {

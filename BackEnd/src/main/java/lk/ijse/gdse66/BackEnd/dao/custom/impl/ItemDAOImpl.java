@@ -2,7 +2,6 @@ package lk.ijse.gdse66.BackEnd.dao.custom.impl;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import lk.ijse.gdse66.BackEnd.Entity.Customer;
 import lk.ijse.gdse66.BackEnd.Entity.Item;
 import lk.ijse.gdse66.BackEnd.dao.CrudUtil;
 import lk.ijse.gdse66.BackEnd.dao.custom.ItemDAO;
@@ -45,8 +44,30 @@ public class ItemDAOImpl implements ItemDAO {
     }
 
     @Override
+    public Item search(String id, Connection connection) throws SQLException, ClassNotFoundException {
+        ResultSet rst = CrudUtil.executeQuery(connection,"SELECT * FROM item WHERE code=?",id);
+        if (rst.next()){
+            return new Item(
+                    rst.getString(1),
+                    rst.getString(2),
+                    rst.getInt(3),
+                    rst.getDouble(4)
+            );
+        }else {
+            return null;
+        }
+    }
+
+    @Override
     public boolean add(Item item, Connection connection) throws SQLException, ClassNotFoundException {
         return CrudUtil.executeUpdate(connection,"INSERT INTO company.item VALUES(?,?,?,?)",item.getCode(),
                 item.getDescription(),item.getQtyOnHand(),item.getUnitPrice());
     }
+
+    @Override
+    public boolean updateQtyOnHand(Connection connection, String id, int qty) throws SQLException, ClassNotFoundException {
+        return  CrudUtil.executeUpdate(connection, "UPDATE company.item SET qtyOnHand=(qtyOnHand - "+ qty +")WHERE code=?", id);
+    }
+
+
 }
